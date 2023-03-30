@@ -1,0 +1,29 @@
+<h1>CSV Data</h1>
+<table>
+  <thead>
+    <tr>
+      <th>Date</th>
+      <th>Source</th>
+      <th>Attributed_conversions</th>
+      <th>attributed_revenue</th>
+      <th>type</th>
+      <th>spends</th>
+      <th>partition_id</th>
+      <th>optimisation_target</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @data.each do |row| %>
+      <tr>
+        <td><%= row["date"] %></td>
+        <td><%= row["source"] %></td>
+        <td><%= row["attributed_conversions"] %></td>
+        <td><%= row["attributed_revenue"] %></td>
+        <td><%= row["type"] %></td>
+        <td><%= row["spends"] %></td>
+        <td><%= row["partition_id"] %></td>
+        <td><%= row["optimisation_target"] %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

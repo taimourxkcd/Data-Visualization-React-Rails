@@ -8,7 +8,7 @@ export default class App extends Component {
   constructor() {
     super();
     this.state = {
-      Id: "bitcoin",
+      Id: "baseline",
       Data: [],
     };
   }
@@ -16,14 +16,23 @@ export default class App extends Component {
   source = "/source/baseline";
 
   fetchData = async () => {
-    let data = await fetch("/api/v1/csv" + this.source);
+    let data = await fetch("/api/v1/csv/source/" + this.state.Id);
     let JsonData = await data.json();
     this.setState({ Id: this.state.Id, Data: JsonData });
   };
 
+  handleSubmit = async(event)=>{
+    console.log(event.target.value)
+    await this.setState({Id: event.target.value, Data: this.state.Data})
+    this.fetchData()
+  }
+
+
   componentDidMount() {
     this.fetchData();
   }
+
+
 
   render() {
     const { Data } = this.state;
@@ -33,7 +42,7 @@ export default class App extends Component {
         {/* <h1>this is taimour</h1>
         <Csv /> */}
 
-        <Header
+        <Header handle_submit = {this.handleSubmit}
           sourceName={
             this.state.Data && this.state.Data.length > 0
               ? this.state.Data[0].source

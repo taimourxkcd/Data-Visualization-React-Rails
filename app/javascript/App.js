@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import { ReactDOM } from "react-dom/client";
+import CardSection from "./src/components/CardSection";
+import Header from "./src/components/Header";
 import Csv from "./src/Csv";
 
 export default class App extends Component {
@@ -22,22 +24,39 @@ export default class App extends Component {
   }
 
   render() {
+    const { Data } = this.state;
 
-      const { Data } = this.state;
-      
     return (
       <>
         {/* <h1>this is taimour</h1>
         <Csv /> */}
-        {/* {JSON.stringify(this.state.Data)} */}
 
-        {/* {this.state.Data.map((item) => (
-          <div key={item.partition_id}>{item.date}</div>
-        ))} */}
+        <Header />
 
-        {Data && Data.length > 0 && <div>{Data[0].date}</div>}
-
-        {/* <p>Date: {this.state.Data.data.date}</p> */}
+        <div className="container-xxl">
+          <div className="row flex-row justify-content-center">
+            <div className="col-md-6 col-lg-4 mb-3">
+              <CardSection
+                name="Total Attribute Conversions"
+                attribute={
+                  this.state.Data && this.state.Data.length > 0
+                    ? this.state.Data[0].attributed_conversions
+                    : null
+                }
+              />
+            </div>
+            <div className="col-md-6 col-lg-4 mb-3">
+              <CardSection
+                name="Total Attribute Revenues"
+                attribute={
+                  this.state.Data && this.state.Data.length > 0
+                    ? this.state.Data[0].attributed_revenue
+                    : null
+                }
+              />
+            </div>
+          </div>
+        </div>
       </>
     );
   }

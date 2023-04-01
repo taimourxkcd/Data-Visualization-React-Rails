@@ -5,11 +5,18 @@ require "csv"
 module Api
   module V1
     class CsvController < ApplicationController
-      # controller code here
       def index
         data = []
         CSV.foreach("#{Rails.root}/app/data/sphere-sample-data.csv", headers: true) do |row|
           data << row.to_hash
+        end
+        render json: data
+      end
+
+      def date
+        data = []
+        CSV.foreach("#{Rails.root}/app/data/sphere-sample-data.csv", headers: true) do |row|
+          data << row["date"] # add only date to the data array
         end
         render json: data
       end

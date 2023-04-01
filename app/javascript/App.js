@@ -13,10 +13,10 @@ export default class App extends Component {
     };
   }
 
-  source = "date"
+  source = "/source/baseline";
 
   fetchData = async () => {
-    let data = await fetch("/api/v1/csv");
+    let data = await fetch("/api/v1/csv" + this.source);
     let JsonData = await data.json();
     this.setState({ Id: this.state.Id, Data: JsonData });
   };
@@ -33,7 +33,13 @@ export default class App extends Component {
         {/* <h1>this is taimour</h1>
         <Csv /> */}
 
-        <Header />
+        <Header
+          sourceName={
+            this.state.Data && this.state.Data.length > 0
+              ? this.state.Data[0].source
+              : null
+          }
+        />
 
         <div className="container-xxl">
           <div className="row flex-row justify-content-center">

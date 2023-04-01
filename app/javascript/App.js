@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { ReactDOM } from "react-dom/client";
 import CardSection from "./src/components/CardSection";
+import ChartSection from "./src/components/ChartSection";
 import Header from "./src/components/Header";
 import Csv from "./src/Csv";
 
@@ -72,6 +73,9 @@ export default class App extends Component {
                 }
               />
             </div>
+
+        <ChartSection/>
+
           </div>
         </div>
       </>

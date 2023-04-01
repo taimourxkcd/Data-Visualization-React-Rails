@@ -13,6 +13,8 @@ export default class App extends Component {
     };
   }
 
+  source = "date"
+
   fetchData = async () => {
     let data = await fetch("/api/v1/csv");
     let JsonData = await data.json();
